@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>AIBS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../../src/style/style.css" />
+  <link rel="stylesheet" href="../../src/style/custom.css" />
+</head>
+
+<body>
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-lg-5 px-0">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="dashboard.html">AIBS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="unit.html">Unit Information</a></li>
+          <li class="nav-item"><a class="nav-link" href="tenant.html" style="cursor: pointer">Tenants</a></li>
+          <li class="nav-item"><a class="nav-link" href="payment.html" style="cursor: pointer">Payment</a></li>
+          <li class="nav-item"><a class="nav-link" href="inventory.html" style="cursor:pointer;">Inventory</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html" style="cursor:pointer;">Profile</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html" style="cursor: pointer">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="py-5">
+      <div class="container-fluid px-md-5">
+        <div class="card-header border-bottom bg-white p-3 d-flex align-items-center gap-2 mb-4">
+          <i class="bi bi-house-door text-primary fs-5"></i>
+          <h5 class="mb-0 fw-medium text-dark text-uppercase">
+            Unit Information
+          </h5>
+        </div>
+        <!-- Search and Sort Controls -->
+        <div class="row mb-4 align-items-start g-3">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRoomModal">
+              <i class="bi bi-plus me-2"></i> Add Room
+            </button>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="input-group border rounded-3 shadow-sm mb-2">
+              <span class="input-group-text bg-transparent border-0 ps-3"><i class="bi bi-search text-muted"></i></span>
+              <input id="roomSearch" type="text" class="form-control border-0 py-2" placeholder="Search"
+                aria-label="Search" />
+            </div>
+            <select id="sortStatus" class="form-select border rounded-3 shadow-sm py-2" aria-label="Filter by status">
+              <option value="all">All</option>
+              <option value="vacant">Vacant</option>
+              <option value="occupied">Occupied</option>
+            </select>
+          </div>
+        </div>
+        <hr class="mb-4" />
+
+        <!-- Modal for Adding Room -->
+        <div class="modal fade" id="addRoomModal" tabindex="-1" aria-labelledby="addRoomModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="addRoomModalLabel">
+                  Add New Room
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="formFeedback" class="alert d-none" role="alert"></div>
+                <form id="addRoomForm">
+                  <div class="mb-3">
+                    <label for="roomNumber" class="form-label">Room Number <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="roomNumber" required
+                      aria-describedby="roomNumberFeedback" />
+                    <div id="roomNumberFeedback" class="invalid-feedback">
+                      Please enter a room number.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="roomPrice" class="form-label">Price<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="roomPrice" name="roomPrice" required />
+                  </div>
+                  <!--  generate input for features hahahahha -->
+                  <div class="mb-3">
+                    <label for="features">Room Features(Optional)<span class="text-danger">*</span></label>
+                    <div id="inputContainer" class="mb-3">
+                      <div class="input-group mb-2">
+                        <input type="text" class="form-control" name="features[]" />
+                      </div>
+                    </div>
+                    <button type="button" id="addInput" class="btn btn-primary">
+                      Add Features
+                    </button>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="roomDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="roomDescription" rows="4"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="roomImage" class="form-label">Room Image (Optional)</label>
+                    <input type="file" class="form-control" id="roomImage" accept="image/*" />
+                    <div id="imagePreview" class="mt-2" style="max-height: 150px">
+                      <img id="previewImage" src="" alt="Image preview" class="img-fluid d-none" />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">
+                    Add Room
+                  </button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <small class="text-muted">
+                  Need help?
+                  <a href="#" class="text-decoration-none">Contact support</a>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal for Editing Room -->
+        <div class="modal fade" id="editRoomModal" tabindex="-1" aria-labelledby="editRoomModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="editRoomModalLabel">Edit Room Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="editFormFeedback" class="alert d-none" role="alert"></div>
+                <form id="editRoomForm">
+                  <div class="mb-3">
+                    <label for="editRoomNumber" class="form-label">Room Number <span
+                        class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="editRoomNumber" required
+                      aria-describedby="editRoomNumberFeedback" />
+                    <div id="editRoomNumberFeedback" class="invalid-feedback">
+                      Please enter a room number.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="editRoomPrice" class="form-label">Price <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="editRoomPrice" name="editRoomPrice" required />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="editFeatures" class="form-label">Room Features (Optional)</label>
+                    <div id="editInputContainer" class="mb-3">
+                      <div class="input-group mb-2">
+                        <input type="text" class="form-control" name="editFeatures[]" />
+                      </div>
+                    </div>
+                    <button type="button" id="addEditInput" class="btn btn-primary">
+                      Add Features
+                    </button>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="editRoomDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="editRoomDescription" rows="4"></textarea>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="editRoomImage" class="form-label">Room Image (Optional)</label>
+                    <input type="file" class="form-control" id="editRoomImage" accept="image/*" />
+                    <div id="editImagePreview" class="mt-2" style="max-height: 150px">
+                      <img id="editPreviewImage" src="" alt="Image preview" class="img-fluid d-none" />
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary w-100">
+                    Save Changes
+                  </button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <small class="text-muted">
+                  Need help?
+                  <a href="#" class="text-decoration-none">Contact support</a>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Cards -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4" id="roomContainer">
+
+          <div class="col room-card" data-room="Room 1" data-status="Vacant">
+            <div class="card h-100 shadow-sm border-1 p-3 rounded-3 transform-hover">
+              <!-- edit icon section -->
+              <button type="button"
+                class="btn btn-light btn-sm rounded-circle position-absolute top-0 end-0 m-2 shadow-sm border border-1"
+                data-bs-toggle="modal" data-bs-target="#editRoomModal">
+                <i class="bi bi-pencil-fill text-muted fs-5"></i>
+              </button>
+              <!-- images display section -->
+              <img src="../../src/images/room.jfif" alt="Inventory" class="img-fluid rounded-3 mb-4 d-block mx-auto" />
+              <!-- Card content -->
+              <div class="text-start">
+                <h5 class="card-title fw-semibold">Room 1</h5>
+                <p class="card-text text-muted">
+                  Easily monitor all furniture and appliances in each unit
+                  with real-time updates.
+                </p>
+                <!-- Status and price -->
+                <div class="d-flex justify-content-between align-items-center px-1">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle p-1">
+                      <i class="bi bi-check-circle text-success fs-4"></i>
+                    </span>
+                    <span class="text-success fw-semibold">Vacant</span>
+                  </div>
+                  <div>
+                    <p class="card-text text-muted">₱ 3000/Mo.</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="d-flex gap-2 mt-4">
+                  <button type="button" class="btn btn-primary px-4">
+                    More details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col room-card" data-room="Room 2" data-status="Occupied">
+            <div class="card h-100 shadow-sm border-1 p-3 rounded-3 transform-hover">
+              <!-- edit icon section -->
+              <button type="button"
+                class="btn btn-light btn-sm rounded-circle position-absolute top-0 end-0 m-2 shadow-sm border border-1"
+                data-bs-toggle="modal" data-bs-target="#editRoomModal">
+                <i class="bi bi-pencil-fill text-muted fs-5"></i>
+              </button>
+              <!-- images display section -->
+              <img src="../../src/images/room.jfif" alt="Inventory" class="img-fluid rounded-3 mb-4 d-block mx-auto" />
+              <!-- Card content -->
+              <div class="text-start">
+                <h5 class="card-title fw-semibold">Room 2</h5>
+                <p class="card-text text-muted">
+                  Easily monitor all furniture and appliances in each unit
+                  with real-time updates.
+                </p>
+                <!-- Status and price -->
+                <div class="d-flex justify-content-between align-items-center px-1">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle p-1">
+                      <i class="bi bi-exclamation-circle text-danger fs-4"></i>
+                    </span>
+                    <span class="text-danger fw-semibold">Occupied</span>
+                  </div>
+                  <div>
+                    <p class="card-text text-muted">₱ 3000/Mo.</p>
+                  </div>
+                </div>
+                <hr />
+                <div class="d-flex gap-2 mt-4">
+                  <button type="button" class="btn btn-primary px-4">
+                    More details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Pagination Controls -->
+        <nav aria-label="Table pagination" class="pt-4 d-flex justify-content-center">
+          <ul id="pagination" class="pagination gap-2">
+            <li class="page-item disabled">
+              <a class="page-link pagination-link pagination-prev" href="#" aria-label="Previous">
+                <i class="bi bi-chevron-left"></i>
+              </a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link pagination-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link pagination-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link pagination-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link pagination-link pagination-next" href="#" aria-label="Next">
+                <i class="bi bi-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white mt-auto">
+    <div class="container py-3">
+      <div class="row gy-3">
+        <!-- About Section -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-2">About Us</h5>
+          <p class="text-light small">
+            We provide an all-in-one solution for managing apartment
+            inventories and billing, making life easier for both tenants and
+            property managers.
+          </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="col-md-4 text-center">
+          <h5 class="fw-bold mb-2">Follow Us</h5>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mx-2">
+              <a href="https://www.facebook.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-facebook fs-4"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="https://www.twitter.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-twitter fs-4"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="https://www.instagram.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-instagram fs-4"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="https://www.linkedin.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-linkedin fs-4"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-2">Contact Us</h5>
+          <p class="text-light small">
+            Email:
+            <a href="mailto:support@apartmentinventory.com"
+              class="text-white text-decoration-none">support@apartmentinventory.com</a><br />
+            Phone:
+            <a href="tel:+1234567890" class="text-white text-decoration-none">+1 (234) 567-890</a>
+          </p>
+        </div>
+      </div>
+
+      <hr class="border-light my-3" />
+
+      <div class="text-center text-light small">
+        © 2025 Apartment Inventory and Billing System. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../src/js/admin/addRoomImgPreview.js"></script>
+  <script src="../../src/js/admin/roomsearch_Sort.js"></script>
+  <script src="../../src/js/admin/addRoomform.js"></script>
+  <script src="../../src/js/admin/addRoomformInputGenerate.js"></script>
+  <script src="../../src/js/admin/editRoomformInputGenerate.js"></script>
+</body>
+
+</html>

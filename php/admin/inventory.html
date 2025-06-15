@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AIBS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../src/style/style.css">
+    <link rel="stylesheet" href="../../src/style/custom.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-lg-5 px-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.html">AIBS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="unit.html">Unit Information</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="tenant.html" style="cursor:pointer;">Tenants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="payment.html" style="cursor:pointer;">Payment</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="inventory.html" style="cursor:pointer;">Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link" style="cursor:pointer;">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.html" style="cursor:pointer;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="py-5 bg-white">
+            <div class="container-fluid px-md-5">
+                <!-- Card Wrapper for Table -->
+                <div class="border-0 rounded-3 overflow-hidden">
+                    <!-- Card Header -->
+                    <div class="card-header border-bottom bg-white p-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-people-fill text-primary fs-5"></i>
+                        <h5 class="mb-0 fw-medium text-dark text-uppercase">Monthly Income</h5>
+                    </div>
+                    <div class="card-body py-4">
+                        <!-- Search and Filter Controls -->
+                        <div class="row mb-4 g-3 flex-column">
+                            <div class="col-12 col-md-3">
+                                <div class="input-group border rounded-3 shadow-sm">
+                                    <span class="input-group-text bg-transparent border-0 ps-3">
+                                        <i class="bi bi-search text-muted"></i></span>
+                                    <input id="monthPicker" type="month" class="form-control border-0 py-2" placeholder="Search" aria-label="Search">
+                                </div>
+                            </div>
+                        <!-- <div class="col-12 col-md-6 col-lg-3">
+                                <select id="statusFilter" class="form-select border rounded-3 shadow-sm py-2"
+                                    aria-label="Filter by status">
+                                    <option value="all">All</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Overdue">Overdue</option>
+                                </select>
+                            </div> -->
+                        </div>
+                        <hr>                    
+                        <!-- Responsive Table -->
+                        <div id="cardsContainer" class="table-responsive">
+                            <table class="table table-bordered table-hover align-middle">
+                              <thead class="table-light">
+                                <tr>
+                                  <th>Date</th>
+                                  <th>Description</th>
+                                  <th>Amount</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tableBody">
+                              </tbody>
+                            </table>
+                        </div>
+                        <div id="totalIncome" class="alert alert-info">
+                            <strong>Total Income: </strong>$0
+                          </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <footer class="bg-dark text-white mt-auto">
+        <div class="container py-3">
+            <div class="row gy-3">
+                <!-- About Section -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-2">About Us</h5>
+                    <p class="text-light small">
+                        We provide an all-in-one solution for managing apartment inventories and billing, making life
+                        easier for both tenants and property managers.
+                    </p>
+                </div>
+
+                <!-- Social Media Section -->
+                <div class="col-md-4 text-center">
+                    <h5 class="fw-bold mb-2">Follow Us</h5>
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.facebook.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-facebook fs-4"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.twitter.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-twitter fs-4"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.instagram.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-instagram fs-4"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.linkedin.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-linkedin fs-4"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-2">Contact Us</h5>
+                    <p class="text-light small">
+                        Email: <a href="mailto:support@apartmentinventory.com"
+                            class="text-white text-decoration-none">support@apartmentinventory.com</a><br>
+                        Phone: <a href="tel:+1234567890" class="text-white text-decoration-none">+1 (234) 567-890</a>
+                    </p>
+                </div>
+            </div>
+
+            <hr class="border-light my-3">
+
+            <div class="text-center text-light small">
+                © 2025 Apartment Inventory and Billing System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Sample data (you may fetch this from your database)
+        const payments = [
+          { date: '2025-06-01', description: 'Room Rent', amount: 500 },
+          { date: '2025-06-15', description: 'Maintenance Fee', amount: 100 },
+          { date: '2025-07-04', description: 'Room Rent', amount: 500 },
+          { date: '2025-07-20', description: 'Other Income', amount: 250 },
+          { date: '2025-06-30', description: 'Security Deposit', amount: 300 },
+        ];
+    
+        document.getElementById('monthPicker').addEventListener('change', function (e) {
+          const selected = e.target.value; // Format: "YYYY-MM"
+    
+          if (!selected) return;
+    
+          // Filter payments by selected year and month
+          const filtered = payments.filter((item) => item.date.startsWith(selected));
+    
+          // Calculate total
+          const total = filtered.reduce((sum, item) => sum + item.amount, 0);
+    
+          // Update total
+          document.getElementById('totalIncome').innerHTML = "<strong>Total Income: </strong>$" + total;
+    
+          // Update table
+          const tbody = document.getElementById('tableBody');
+          tbody.innerHTML = '';
+          filtered.forEach((item) => {
+            tbody.innerHTML += `
+              <tr>
+                <td>${item.date}</td>
+                <td>${item.description}</td>
+                <td>$${item.amount}</td>
+              </tr>`;
+          });
+        });
+      </script>
+</body>
+
+</html>

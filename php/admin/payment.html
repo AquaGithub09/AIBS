@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AIBS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../src/style/style.css">
+    <link rel="stylesheet" href="../../src/style/custom.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-lg-5 px-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.html">AIBS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="unit.html">Unit Information</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="tenant.html" style="cursor:pointer;">Tenants</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="payment.html" style="cursor:pointer;">Payment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="inventory.html"  style="cursor:pointer;">Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html" style="cursor:pointer;">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.html" style="cursor:pointer;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="py-5 bg-white">
+            <div class="container-fluid px-md-5">
+                <!-- Card Wrapper for Table -->
+                <div class="border-0 rounded-3 overflow-hidden">
+                    <!-- Card Header -->
+                    <div class="card-header border-bottom bg-white p-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-people-fill text-primary fs-5"></i>
+                        <h5 class="mb-0 fw-medium text-dark text-uppercase">Payment Request Confirmation</h5>
+                    </div>
+                    <div class="card-body py-4">
+                        <!-- Search and Filter Controls -->
+                        <div class="row mb-4 g-3 flex-column">
+                            <div class="col-12 col-md-3">
+                                <div class="input-group border rounded-3 shadow-sm">
+                                    <span class="input-group-text bg-transparent border-0 ps-3"><i
+                                            class="bi bi-search text-muted"></i></span>
+                                    <input id="roomSearch" type="text" class="form-control border-0 py-2"
+                                        placeholder="Search" aria-label="Search">
+                                </div>
+                            </div>
+                            <!-- <div class="col-12 col-md-6 col-lg-3">
+                                <select id="statusFilter" class="form-select border rounded-3 shadow-sm py-2"
+                                    aria-label="Filter by status">
+                                    <option value="all">All</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Overdue">Overdue</option>
+                                </select>
+                            </div> -->
+                        </div>
+                        <hr>                    
+                        <!-- Responsive Table -->
+                        <div id="cardsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                            <!-- Card 1 -->
+                            <div class="col">
+                                <div class="card p-3 shadow-sm rounded-3 position-relative">
+                                    <img src="../../src/images/default.jpg" alt="Profile Image"
+                                        class="profile-img shadow-sm">
+                                    <h5 class="card-title">Alice Smith</h5>
+                                    <p class="">Room 1</p>
+                                    <p>Started: 6/15/25</p>
+                                    <p>Due: 7/14/25</p>
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center">                                      
+                                        <span
+                                        class="badge text-warning rounded-pill d-flex align-items-center gap-1 animate__animated animate__fadeIn">
+                                        <i class="bi bi-question-circle text-warning fs-6 me-1"></i> Pending
+                                        </span>
+                                        <p class="fw-semibold">Amount: ₱ 3000</p>
+                                    </div>
+                                    <div class="d-flex justify-content-start align-items-center gap-2 mt-3">
+                                        <button type="button" class="btn btn-success px-4"> Confirm Payment</button>
+                                        <button type="button" class="btn btn-primary px-4">Check Details</button>
+                                    </div>
+                                </div>
+                            </div>            
+                        </div>
+
+                    </div>
+                    <!-- Pagination Controls -->
+                    <nav aria-label="Table pagination" class="pt-4 d-flex justify-content-center">
+                        <ul id="pagination" class="pagination gap-2">
+                            <li class="page-item disabled">
+                                <a class="page-link pagination-link pagination-prev" href="#" aria-label="Previous">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link pagination-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link pagination-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link pagination-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link pagination-link pagination-next" href="#" aria-label="Next">
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <footer class="bg-dark text-white mt-auto">
+        <div class="container py-3">
+            <div class="row gy-3">
+                <!-- About Section -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-2">About Us</h5>
+                    <p class="text-light small">
+                        We provide an all-in-one solution for managing apartment inventories and billing, making life
+                        easier for both tenants and property managers.
+                    </p>
+                </div>
+
+                <!-- Social Media Section -->
+                <div class="col-md-4 text-center">
+                    <h5 class="fw-bold mb-2">Follow Us</h5>
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.facebook.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-facebook fs-4"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.twitter.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-twitter fs-4"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.instagram.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-instagram fs-4"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mx-2">
+                            <a href="https://www.linkedin.com" class="text-white text-decoration-none" target="_blank">
+                                <i class="bi bi-linkedin fs-4"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-2">Contact Us</h5>
+                    <p class="text-light small">
+                        Email: <a href="mailto:support@apartmentinventory.com"
+                            class="text-white text-decoration-none">support@apartmentinventory.com</a><br>
+                        Phone: <a href="tel:+1234567890" class="text-white text-decoration-none">+1 (234) 567-890</a>
+                    </p>
+                </div>
+            </div>
+
+            <hr class="border-light my-3">
+
+            <div class="text-center text-light small">
+                © 2025 Apartment Inventory and Billing System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../src/js/admin/tenantSearchSort.js"></script>
+    <script src="../../src/js/admin/addTenantform.js"></script>
+    <script src="../../src/js/admin/addTenantImgPreview.js"></script>
+
+</body>
+
+</html>

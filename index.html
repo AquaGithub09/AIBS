@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AIBS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="src/style/style.css">
+  <link rel="stylesheet" href="src/style/custom.css">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-lg-5 px-0">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">AIBS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
+              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="php/features.html">Features</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" style="cursor:pointer;">Login</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModal" style="cursor:pointer;">Register</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown">
+              More
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">About</a></li>
+              <li><a class="dropdown-item" href="#">Contact</a></li>
+              <li><a class="dropdown-item" href="#">Help</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container mt-5">
+      <!-- Header Row -->
+      <div class="row align-items-center mb-5">
+        <!-- Image -->
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img src="src/images/apart.png" alt="Apartment Inventory" class="img-fluid rounded shadow">
+        </div>
+        <!-- Description -->
+        <div class="col-md-6">
+          <h2 class="text-uppercase">Apartment Inventory & Billing System</h2>
+          <p class="lead">
+            AIBS is a comprehensive platform designed to simplify the management of apartment inventories and billing processes. Whether you are a property manager or a tenant, AIBS provides an intuitive interface to keep track of all your apartment-related needs.
+          </p>
+          <p>
+            Features include real-time inventory updates, tenant-specific bailing reports, automated reminders, and support for multiple apartment units. Designed with usability and efficiency in mind, this platform streamlines property operations from a single dashboard.
+          </p>
+        </div>        
+      </div>
+  
+      <!-- Features Section -->
+      <div class="row text-center mb-5">
+        <h3 class="mb-4">Key Features</h3>
+      
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="p-4 border rounded shadow-sm h-100">
+            <i class="bi bi-house-gear-fill fs-1 text-primary mb-3"></i>
+            <h5>Smart Inventory</h5>
+            <p>Track furniture, appliances, and fixtures in real-time, per unit or building-wide.</p>
+          </div>
+        </div>
+      
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="p-4 border rounded shadow-sm h-100">
+            <i class="bi bi-receipt fs-1 text-success mb-3"></i>
+            <h5>Automated Billing</h5>
+            <p>Generate monthly bills based on utilities, maintenance, and rent with zero manual work.</p>
+          </div>
+        </div>
+      
+        <div class="col-md-4">
+          <div class="p-4 border rounded shadow-sm h-100">
+            <i class="bi bi-person-check fs-1 text-info mb-3"></i>
+            <h5>Tenant Portal</h5>
+            <p>Let tenants view their statements, pay online, and report issues directly.</p>
+          </div>
+        </div>
+      </div>
+      
+  
+      <!-- Benefits Section -->
+      <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+          <h4>Why Choose AIBS?</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Reduce manual tracking errors</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Save time with automated workflows</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Improve tenant satisfaction</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Monitor everything from one dashboard</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Call to Action -->
+      <div class="row text-center">
+        <div class="col">
+          <div class="p-4 bg-light rounded shadow-sm">
+            <h4>Get Started Today</h4>
+            <p class="mb-3">Sign up now and revolutionize the way you manage your apartments!</p>
+            <a href="#" class="btn btn-primary btn-lg">Request a Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="loginModalLabel">Login</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="login.php" method="POST">
+            <div class="mb-3">
+              <label for="loginUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="loginUsername" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginPassword" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <small class="text-muted">
+            Don’t have an account? 
+            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Register here</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="registerModalLabel">Register</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="register.php" method="POST">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="first_name" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="middleName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="middleName" name="middle_name">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="last_name" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="registerAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" id="registerAddress" name="address" required>
+            </div>
+            <div class="mb-3">
+              <label for="registerUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="registerUsername" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="registerPassword" name="password" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <small class="text-muted">
+            Already have an account?
+            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white mt-auto">
+    <div class="container py-3">
+      <div class="row gy-3">
+        <!-- About Section -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-2">About Us</h5>
+          <p class="text-light small">
+            We provide an all-in-one solution for managing apartment inventories and billing, making life easier for both tenants and property managers.
+          </p>
+        </div>
+  
+        <!-- Social Media Section -->
+        <div class="col-md-4 text-center">
+          <h5 class="fw-bold mb-2">Follow Us</h5>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mx-2">
+              <a href="https://www.facebook.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-facebook fs-4"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="https://www.twitter.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-twitter fs-4"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="https://www.instagram.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-instagram fs-4"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="https://www.linkedin.com" class="text-white text-decoration-none" target="_blank">
+                <i class="bi bi-linkedin fs-4"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Contact Section -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-2">Contact Us</h5>
+          <p class="text-light small">
+            Email: <a href="mailto:support@apartmentinventory.com" class="text-white text-decoration-none">support@apartmentinventory.com</a><br>
+            Phone: <a href="tel:+1234567890" class="text-white text-decoration-none">+1 (234) 567-890</a>
+          </p>
+        </div>
+      </div>
+  
+      <hr class="border-light my-3">
+  
+      <div class="text-center text-light small">
+        © 2025 Apartment Inventory and Billing System. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
